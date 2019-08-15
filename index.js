@@ -10,7 +10,6 @@ client.on('ready', () => {
     client.user.setActivity(`Préparer ses blagues nulles.`);
 });
 
-
 var jokeArray = fs.readFileSync('jokes.json').toString().split("\n**");
 var smileyArray = fs.readFileSync('urlemojis.txt').toString().split("\n");
 
@@ -172,10 +171,6 @@ client.on("message", async message => {
         const jokeMsg = new Discord.RichEmbed()
             .setColor('#' + Math.floor(Math.random()*16777215).toString(16))
             .setTitle('')
-            // .setAuthor('Some name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
-            // .addField('Regular field title', 'Some value here')
-            // .addBlankField()
-            // .addField('Inline field title', 'Some value here', true)
             .setTimestamp()
 
         var jokeImg = smileyArray[Math.floor(Math.random()*smileyArray.length)];
