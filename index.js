@@ -3,15 +3,17 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require("./config.json");
 const fs = require('fs');
+const lineReader = require('line-reader');
 var isvac;
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setActivity(`Préparer ses blagues nulles.`);
+    client.user.setActivity(`Animer le Juste-Prix comme Vincent Lagaf'`);
 });
 
 var jokeArray = fs.readFileSync('jokes.json').toString().split("\n**");
 var smileyArray = fs.readFileSync('urlemojis.txt').toString().split("\n");
+var wordArray = fs.readFileSync('liste_francais.txt').toString().split("\n");
 
 //commands
 
@@ -43,7 +45,7 @@ client.on("message", async message => {
         message.delete().catch(O_o => {});
 
         if (args !== 0) {
-            const sayMessage = args.join(" ");
+            var sayMessage = args.join(" ");
             message.channel.send(sayMessage);
         }
 
@@ -164,14 +166,96 @@ client.on("message", async message => {
             .catch(error => message.reply(`Impossible de supprimer des messages à cause de: ${error}`));
     }
 
+    //justeprix command
+
+    if (command === "justeprix") {
+        // console.log(justeprix_encours)
+        if (justeprix_encours) {
+            return message.reply('Désolé, une partie est déjà en cours !')
+        } else {
+
+            var justeprix_channel = client.channels.get(config.justeprix_id);
+
+            var fetched = await justeprix_channel.fetchMessages({});
+            justeprix_channel.bulkDelete(fetched)
+                .catch(error => message.reply(`Impossible de supprimer des messages à cause de: ${error}`));
+
+            var justeprix_encours = true
+
+            var justeprix_random = Math.random() * (+config.justeprix_max - +config.justeprix_min) + +config.justeprix_min;
+            justeprix_random = Math.round(justeprix_random)
+
+            console.log(justeprix_random)
+
+            var justeprix_msg = new Discord.RichEmbed()
+                .setTitle('Une partie de juste prix a été lancée')
+                .setThumbnail('https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/Logo_Le_Juste_Prix.png/250px-Logo_Le_Juste_Prix.png')
+                .setDescription('**le nombre est compris entre ' + config.justeprix_min + ' et ' + config.justeprix_max + '!**\n\nProposez un nombre et je vous dirais si **c\'est plus** ou **c\'est moins**. [Ckwa Le juste prix ?](https://fr.wikipedia.org/wiki/Le_Juste_Prix)')
+                .setColor('#FCC201')
+                .setFooter('Partie lancée par ' + message.author.username)
+
+            justeprix_channel.send(justeprix_msg)
+                .then (
+                    client.on("message", message2 => {
+                        if (message2.channel.id === config.justeprix_id){
+                            if (message2.author.id !== client.user.id){
+                                justeprix_number = parseInt(message2, 10);
+                                if (justeprix_number >= config.justeprix_min && justeprix_number <= config.justeprix_max) {
+                                    if (justeprix_number < justeprix_random) {
+                                        message2.reply(justeprix_number + ' **C\'est plus**!')
+                                    }
+                                    if (justeprix_number > justeprix_random) {
+                                        message2.reply(justeprix_number + ' **C\'est moins**!')
+                                    }
+                                    if (justeprix_number === justeprix_random) {
+                                        justeprix_random = undefined
+
+                                        var justeprix_winmsg = new Discord.RichEmbed()
+                                            .setTitle(justeprix_number + ', C\'est exact!')
+                                            .setThumbnail('https://i.imgur.com/urMPyjF.png')
+                                            .setDescription('\n**Félicitation ' + message2.author + ', Tu as trouvé le nombre caché!**\n\nVous pouvez relancer une nouvelle partie en tappant la commande \`/e justeprix\`')
+                                            .setColor('#33ff3f')
+
+                                        return message2.channel.send(justeprix_winmsg)
+                                    }
+                                }
+                            }
+                        }
+                    })
+                )
+        }
+    }
+
+    if (command === "justeprixstop") {
+        var justeprix_encours = undefined
+    }
+
+    if (command === "hideword") {
+
+        var hideword_full = wordArray[Math.floor(Math.random() * wordArray.length)];
+
+        var hideword_cut = hideword_full.split("");
+        var hideword_join = []
+
+        var hideletters = hideword_full.length * 20/100
+        var hideletters = Math.round(hideletters)
+        message.reply(hideletters)
+
+        var hideword_joinlast = hideword_join.join('')
+
+        message.reply('\`' + hideword_joinlast + '\`')
+        console.log(hideword_joinlast)
+
+        //message.reply(hideword_full);
+    }
+
     //jokes command request
-    if (command === "joke") {
+    if (command === "joke" || command === "j") {
         const jokechan = client.channels.get(config.jokechanid);
 
-        const jokeMsg = new Discord.RichEmbed()
+        var jokeMsg = new Discord.RichEmbed()
             .setColor('#' + Math.floor(Math.random()*16777215).toString(16))
             .setTitle('')
-            .setTimestamp()
 
         var jokeImg = smileyArray[Math.floor(Math.random()*smileyArray.length)];
         jokeMsg.setThumbnail(jokeImg)
@@ -189,20 +273,12 @@ client.on("message", async message => {
         jokeMsg.setDescription('**' + Joke + '**')
 
         jokechan.send(jokeMsg)
-            .then (jokeMsg => {
+            .then (async jokeMsg => {
                 jokeMsg.react("👍")
+                await sleep(100)
                 jokeMsg.react("👎")
 
-                client.on('messageReactionAdd', (reaction, user) => {
-                    if (reaction.emoji.name === "👍" && user.id !== client.user.id) {
-                        reaction.remove(client.user.id);
-                    }
-                    if (reaction.emoji.name === "👎" && user.id !== client.user.id) {
-                        reaction.remove(client.user.id);
-                    }
-                })
-
-                client.on('messageReactionAdd', (reaction, user) => {
+                client.on('messageReactionAdd', async (reaction, user) => {
                     if (reaction.emoji.name === "👎" || reaction.emoji.name === "👍") {
                         if (user.id !== client.user.id) {
                             var AllReact = reaction.message.reactions
@@ -211,27 +287,57 @@ client.on("message", async message => {
                                     ireaction.remove(user)
                                 }
                             })
+
+                            await sleep(1000)
+
+                            var msgLikeYes = reaction.message.reactions.filter(a => a.emoji.name === '👍').map(reaction => reaction.count)[0]
+                            var msgLikeNo = reaction.message.reactions.filter(a => a.emoji.name === '👎').map(reaction => reaction.count)[0]
+
+                            msgLikeNo = msgLikeNo - 1
+                            msgLikeYes = msgLikeYes - 1
+
+                            var msgLikeMax = msgLikeYes + msgLikeNo
+                            var msgLikePC = msgLikeYes / msgLikeMax * 100
+
+
+
+                            reaction.message.edit('Blague appréciée à ' + round2(msgLikePC) + '% sur un total de ' + msgLikeMax + ' vote(s).')
                         }
                     }
                 })
 
+                client.on('messageReactionRemove', async (reaction, user) => {
+                    if (reaction.emoji.name === "👎" || reaction.emoji.name === "👍") {
+                        if (user.id !== client.user.id) {
 
-                client.on('messageReactionRemove', (reaction, user) => {
-                    if (reaction.emoji.name === "👍" && user.id !== client.user.id) {
-                        if (reaction.count < 1) {
-                            jokeMsg.react("👍")
+                            var msgLikeYes = reaction.message.reactions.filter(a => a.emoji.name === '👍').map(reaction => reaction.count)[0]
+                            var msgLikeNo = reaction.message.reactions.filter(a => a.emoji.name === '👎').map(reaction => reaction.count)[0]
+
+                            msgLikeNo = msgLikeNo - 1
+                            msgLikeYes = msgLikeYes - 1
+
+                            var msgLikeMax = msgLikeYes + msgLikeNo
+                            var msgLikePC = msgLikeYes / msgLikeMax * 100
+
+                            reaction.message.edit('Blague appréciée à ' + round2(msgLikePC) + '% sur un total de ' + msgLikeMax + ' vote(s).')
                         }
                     }
-                    if (reaction.emoji.name === "👎" && user.id !== client.user.id) {
-                        if (reaction.count < 1) {
-                            jokeMsg.react("👎")
-                        }
-                    }
-                  })
-
+                })
             })
     }
 });
+
+function round2(nb){
+    nb = nb * 100
+    nb = Math.round(nb) / 100
+    return(nb)
+}
+
+function sleep(ms){
+    return new Promise(resolve=>{
+        setTimeout(resolve,ms)
+    })
+}
 
 // client.on('message', message => {
 //     if (message.content === ('#jesuisenvacances')) {
