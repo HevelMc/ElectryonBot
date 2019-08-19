@@ -41,7 +41,7 @@ module.exports.run = async (client, message, args) => {
                                     var justeprix_winmsg = new Discord.RichEmbed()
                                         .setTitle(justeprix_number + ', C\'est exact!')
                                         .setThumbnail('https://i.imgur.com/urMPyjF.png')
-                                        .setDescription('\n**Félicitation ' + message2.author + ', Tu as trouvé le nombre caché!**\n\nVous pouvez relancer une nouvelle partie en tappant la commande \`/e justeprix\`')
+                                        .setDescription('\n**Félicitation ' + message2.author + ', Tu as trouvé le nombre caché!**\n\nVous pouvez relancer une nouvelle partie en tappant la commande \`!e justeprix\`')
                                         .setColor('#33ff3f');
 
                                     return message2.channel.send(justeprix_winmsg);

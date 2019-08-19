@@ -55,7 +55,7 @@ module.exports.run = async (client, message, args) => {
                                 var hideword_winmsg = new Discord.RichEmbed()
                                     .setTitle(message2.content + ', C\'est exact!')
                                     .setThumbnail('https://i.imgur.com/urMPyjF.png')
-                                    .setDescription('\n**Félicitation ' + message2.author + ', Tu as trouvé le mot caché!**\n\nVous pouvez relancer une nouvelle partie en tappant la commande \`/e hideword\`')
+                                    .setDescription('\n**Félicitation ' + message2.author + ', Tu as trouvé le mot caché!**\n\nVous pouvez relancer une nouvelle partie en tappant la commande \`!e hideword\`')
                                     .setColor('#33ff3f');
 
                                 return message2.channel.send(hideword_winmsg);
