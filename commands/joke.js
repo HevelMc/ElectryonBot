@@ -79,3 +79,15 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
     name: "joke"
 }
+
+function round2(nb){
+    nb = nb * 100
+    nb = Math.round(nb) / 100
+    return(nb)
+}
+
+function sleep(ms){
+    return new Promise(resolve=>{
+        setTimeout(resolve,ms)
+    })
+}
