@@ -2,6 +2,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require("./config.json");
+const token = require("./token.json");
 const fs = require('fs');
 let prefix = config.prefix;
 client.commands = new Discord.Collection();
@@ -71,4 +72,4 @@ client.on("message", async message => {
     };
 });
 
-client.login(process.env.TOKEN);
+client.login(token.token);
