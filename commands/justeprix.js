@@ -44,7 +44,10 @@ module.exports.run = async (client, message, args) => {
                                         .setDescription('\n**Félicitation ' + message2.author + ', Tu as trouvé le nombre caché!**\n\nVous pouvez relancer une nouvelle partie en tappant la commande \`!e justeprix\`')
                                         .setColor('#33ff3f');
 
-                                    return message2.channel.send(justeprix_winmsg);
+                                        message.channel.send({embed: justeprix_winmsg}).then(embedMessage => {
+                                            const emoji = client.emojis.get("613671749967413249");
+                                            return embedMessage.react(emoji);
+                                        });
                                 };
                             };
                         };

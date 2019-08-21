@@ -46,7 +46,6 @@ client.on("message", async message => {
     if (msgcont in Aliases) {
 
         let commandFile = client.commands.get(Aliases[msgcont]);
-        console.log(commandFile);
         if (commandFile) commandFile.run(client, message, args);
 
         return;
