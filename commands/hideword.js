@@ -79,7 +79,7 @@ module.exports.run = async (client, message, args) => {
                                 var points = 0
                                 hideword_cut.forEach(function(item, index){
                                     if (item === '﹏') {
-                                        points = points + 20
+                                        points = points + 10
                                     }
                                 });
 
@@ -96,7 +96,7 @@ module.exports.run = async (client, message, args) => {
                                     return embedMessage.react(emoji);
                                 });
 
-                                Level.add(message, points)
+                                Level.add(message2, points)
 
                             };
                         };

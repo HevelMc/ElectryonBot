@@ -53,7 +53,7 @@ module.exports.run = async (client, message, args) => {
 
                                         justeprix_channel.send({embed: justeprix_winmsg}).then(embedMessage => {
                                             const emoji = client.emojis.get("613671749967413249");
-                                            Level.add(message, Math.floor(Math.random() * 20 + 10))
+                                            Level.add(message2, Math.floor(Math.random() * 20 + 10))
                                             return embedMessage.react(emoji);
                                         });
                                 };

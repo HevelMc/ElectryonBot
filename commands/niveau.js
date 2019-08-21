@@ -8,13 +8,13 @@ module.exports.run = async (client, message, args) => {
     } else {
         var user = message.author
     }
-    var levelup_msg = new Discord.RichEmbed()
+    var stat_msg = new Discord.RichEmbed()
         .setTitle('Statistiques du joueur ' + user.username)
         .setThumbnail('https://gamepedia.cursecdn.com/minecraft_gamepedia/9/93/Bottle_o%27_Enchanting.png')
         .addField('Niveau:', `Niveau ${xp[user.id].level}`)
         .addField('Experience:', `${xp[user.id].xp} / ${xp[user.id].level * 50 + 50}`)
         .setColor('#ff0084');
-    message.channel.send(levelup_msg)
+    message.channel.send(stat_msg)
 
 
     function getUserFromMention(mention) {
