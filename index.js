@@ -6,7 +6,7 @@ const token = require("./token.json");
 const fs = require('fs');
 let prefix = config.prefix;
 client.commands = new Discord.Collection();
-const Aliases = {'!j' : 'joke', '!jp' : 'justeprix', '!hw' : 'hideword'};
+const Aliases = {'!j' : 'joke', '!jp' : 'justeprix', '!hw' : 'hideword', '!p' : 'pendu'};
 
 fs.readdir("./commands", (err, files) => {
     if (err) console.log(err);
@@ -26,7 +26,7 @@ fs.readdir("./commands", (err, files) => {
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setActivity(`Animer le Juste-Prix comme Vincent Lagaf'`);
+    client.user.setActivity(`Pendre de pauvre petits stickmans`);
 });
 
 //commands
