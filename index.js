@@ -68,6 +68,8 @@ client.on("message", async message => {
         //justeprixstop
         if (cmd === "justeprixstop") var justeprix_encours = undefined;
 
+        if (cmd === "jpt") Level.test(message);
+
     };
 });
 

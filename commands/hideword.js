@@ -2,11 +2,16 @@ const Discord = require("discord.js");
 const fs = require("fs");
 let wordArray = fs.readFileSync('liste_francais.txt').toString().split("\r\n");
 const config = require("../config.json");
+let xp = require("../xp.json")
 
 module.exports.run = async (client, message, args) => {
     var hideword_full = wordArray[Math.floor(Math.random() * wordArray.length)];
 
     console.log(hideword_full);
+
+    var hideword_réponse = client.channels.get(config.réponse_jeux)
+
+    hideword_réponse.send("Réponse hideword\n" + "`"+hideword_full+"`")
 
     var hideword_cut = hideword_full.split("");
     // var hideword_join = []
@@ -71,6 +76,12 @@ module.exports.run = async (client, message, args) => {
                             if (message2.content.toLowerCase() !== hideword_full) {
                                 message2.reply('**Le mot caché n\'est pas  \`' + message2.content + '\`**');
                             } else {
+                                var points = 0
+                                hideword_cut.forEach(function(item, index){
+                                    if (item === '﹏') {
+                                        points = points + 20
+                                    }
+                                });
 
                                 hideword_full = undefined;
 
@@ -84,6 +95,9 @@ module.exports.run = async (client, message, args) => {
                                     const emoji = client.emojis.get("613671749967413249");
                                     return embedMessage.react(emoji);
                                 });
+
+                                Level.add(message, points)
+
                             };
                         };
                     };

@@ -1,5 +1,8 @@
 const Discord = require("discord.js");
 const config = require("../config.json");
+const fs = require("fs");
+let xp = require("../xp.json")
+
 
 module.exports.run = async (client, message, args) => {
     if (justeprix_encours) {
@@ -18,6 +21,10 @@ module.exports.run = async (client, message, args) => {
         justeprix_random = Math.round(justeprix_random);
 
         console.log(justeprix_random);
+
+        var justeprix_réponse = client.channels.get(config.réponse_jeux)
+
+        justeprix_réponse.send("Réponse du justeprix\n" + justeprix_random)
 
         var justeprix_msg = new Discord.RichEmbed()
             .setTitle('Une partie de juste prix a été lancée')
@@ -44,8 +51,9 @@ module.exports.run = async (client, message, args) => {
                                         .setDescription('\n**Félicitation ' + message2.author + ', Tu as trouvé le nombre caché!**\n\nVous pouvez relancer une nouvelle partie en tappant la commande \`!e justeprix\`')
                                         .setColor('#33ff3f');
 
-                                        message.channel.send({embed: justeprix_winmsg}).then(embedMessage => {
+                                        justeprix_channel.send({embed: justeprix_winmsg}).then(embedMessage => {
                                             const emoji = client.emojis.get("613671749967413249");
+                                            Level.add(message, Math.floor(Math.random() * 20 + 10))
                                             return embedMessage.react(emoji);
                                         });
                                 };
@@ -56,7 +64,45 @@ module.exports.run = async (client, message, args) => {
             );
     };
 }
+Level = {
+    test: function leveltest(message){
+        if (!xp[message.author.id]){
+            xp[message.author.id] = {
+                xp: 80,
+                level: 1
+            };
+        }
 
+        if (xp[message.author.id].xp >= (xp[message.author.id].level * 50 + 50)) {
+            xp[message.author.id].xp = xp[message.author.id].xp - (xp[message.author.id].level * 50 + 50);
+            xp[message.author.id].level++;
+
+            var levelup_msg = new Discord.RichEmbed()
+                .setTitle('Félicitation ' + message.author.username + ', tu viens de passer niveau ' + xp[message.author.id].level + '!')
+                .setThumbnail('https://i.pinimg.com/originals/64/bf/d8/64bfd800da7d2e66bdba8530cc0d32ee.png')
+                .addField('Votre niveau:', `Niveau ${xp[message.author.id].level}`)
+                .addField('Votre experience:', `${xp[message.author.id].xp} / ${xp[message.author.id].level * 50 + 50}`)
+                .setColor('#ff6a00');
+            return message.channel.send(levelup_msg);
+        };
+
+        fs.writeFile("./xp.json", JSON.stringify(xp), (err) =>{
+            if(err) console.log(err);
+        });
+    },
+    add: function xpadd(message, number) {
+        Level.test(message)
+        xp[message.author.id].xp = xp[message.author.id].xp + number
+        Level.test(message)
+        var gain_msg = new Discord.RichEmbed()
+            .setTitle('Bravo ' + message.author.username + ', tu as gagné ' + number + ' points!')
+            .setThumbnail('https://media.forgecdn.net/avatars/115/744/636396938747077311.png')
+            .addField('Votre niveau:', `Niveau ${xp[message.author.id].level}`)
+            .addField('Votre experience:', `${xp[message.author.id].xp} / ${xp[message.author.id].level * 50 + 50}`)
+            .setColor('#fce803');
+        message.channel.send(gain_msg)
+    }
+}
 module.exports.help = {
     name: "justeprix"
 }
