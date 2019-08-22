@@ -44,7 +44,7 @@ client.on("message", async message => {
 
     if (afk[message.author.id] === true) {
         if (!message.content.includes("!e ")) {
-            message.channel.send(`Oh, heureux de vous re-voir **${message.author.username}**. \nVotre Mod \`AFK\` est toujours activé, n'hésitez pas à le retirer avec la commande \`!e afk\`.`)
+            message.channel.send(`Oh, heureux de vous re-voir **${message.author.username}**. \nAu fait, votre Mod \`AFK\` est toujours activé, n'hésitez pas à le retirer avec la commande \`!e afk\`.`).then(msg => msg.delete(10000))
         }
     }
 
