@@ -11,8 +11,6 @@ module.exports.run = async (client, message, args) => {
 
     var hideword_réponse = client.channels.get(config.réponse_jeux)
 
-    hideword_réponse.send("Réponse hideword\n" + "`" + hideword_full + "`")
-
     var hideword_cut = hideword_full.split("");
     // var hideword_join = []
 
@@ -47,10 +45,35 @@ module.exports.run = async (client, message, args) => {
     console.log(hideword_joinlast);
     hideword_channel.send(hideword_msg)
         .then(
-            client.on("message", message2 => {
+            client.on("message", async message2 => {
                 if (message2.channel.id === config.hideword_id) {
                     if (hideword_full !== undefined) {
                         if (message2.author.id !== client.user.id) {
+                            if (message2.content === '!give') {
+                                message2.delete()
+                                if (message.member.hasPermission('ADMINISTRATOR')) {
+
+                                    var fetched = await hideword_réponse.fetchMessages().then(messages => {
+                                        const toDelete = messages.filter(msg => msg.content.includes("`Réponse du Mot Caché`"));
+                                        message.channel.bulkDelete(toDelete)
+                                            .catch(error => message.reply(`Impossible de supprimer des messages à cause de: ${error}`));
+                                    });
+
+                                    var hideword_givemsg = new Discord.RichEmbed()
+                                        .setTitle("Réponse du Mot Caché")
+                                        .setThumbnail('https://sierra.mmic.net/reponse.png')
+                                        .setDescription(hideword_full)
+                                        .setColor('#ff4a53')
+                                        .setFooter('Cette réponse a été demandée par: ' + message2.author.username)
+                                        .setTimestamp();
+
+                                    return hideword_réponse.send({
+                                        embed: hideword_givemsg
+                                    });
+                                } else {
+                                    return message.reply("Désolé, vous n'avez pas les permissions d'utiliser ceci!");
+                                }
+                            }
                             if (message2.content.toLowerCase() === '!indice' || message2.content.toLowerCase() === '!i') {
                                 var allLetters = hideword_full.split("");
                                 var once = true;

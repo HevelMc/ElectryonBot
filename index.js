@@ -4,13 +4,15 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const token = require("./token.json");
 const fs = require('fs');
+let afk = require("./afk.json")
 let prefix = config.prefix;
 client.commands = new Discord.Collection();
 const Aliases = {
     '!j': 'joke',
     '!jp': 'justeprix',
     '!hw': 'hideword',
-    '!p': 'pendu'
+    '!p': 'pendu',
+    '!h': 'help'
 };
 
 fs.readdir("./commands", (err, files) => {
@@ -30,18 +32,45 @@ fs.readdir("./commands", (err, files) => {
 })
 
 client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setActivity(`Pendre de pauvre petits stickmans`);
+    console.log(`Connecté en tant que ${client.user.tag}!`);
+    client.user.setActivity(`Pendre de pauvres petits stickmans`);
 });
 
 //commands
 
 client.on("message", async message => {
 
+    if (message.author.bot) return;
+
+    if (afk[message.author.id] === true) {
+        if (!message.content.includes("!e ")) {
+            message.channel.send(`Oh, heureux de vous re-voir **${message.author.username}**. \nVotre Mod \`AFK\` est toujours activé, n'hésitez pas à le retirer avec la commande \`!e afk\`.`)
+        }
+    }
+
+    mentions = message.mentions.users;
+
+    if (mentions !== null) {
+        mentions.forEach(function (user) {
+            if (afk[user.id] === true) {
+                if (message.author.id !== user.id) {
+                    message.reply(`Désolé, **${user.username}** est actuellement \`AFK\`, veuillez attendre son retour.`);
+                }
+            }
+        });
+    }
+    // if (message.content.includes(afk))
+    // afk.forEach(function (item, index) {
+    //     // message.channel.reply("<@" + index + ">")
+    //     if (message.content.includes("<@" + index + ">")) {
+    //         message.delete(1)
+    //         message.channel.send(':grin:')
+    //     }
+    // })
+
     let messageWithoutPrefix = message.content.split(prefix);
     let messageArray = messageWithoutPrefix.join('').split(" ");
 
-    if (message.author.bot) return;
     if (message.channel.type === "dm") return;
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
@@ -82,7 +111,7 @@ client.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
 	if (reaction.emoji.name === '🔁') {
         if (message.channel.id === config.penduid) {
-            message.reply("restart game.")
+            message.reply("Restarting game.")
         }
     };
 });

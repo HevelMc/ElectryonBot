@@ -34,8 +34,8 @@ module.exports.run = async (client, message, args, user) => {
             .catch(error => pendu_channel.send(`Impossible de supprimer des messages à cause de: ${error}`));
 
         console.log(pendu_full);
+
         var pendu_réponse = client.channels.get(config.réponse_jeux)
-        pendu_réponse.send("Réponse pendu\n" + "`" + pendu_full + "`")
 
         var pendu_msg = new Discord.RichEmbed()
             .setTitle('Une partie de Pendu a été lancée')
@@ -48,10 +48,33 @@ module.exports.run = async (client, message, args, user) => {
                 embed: pendu_msg
             })
             .then(embedMessage => {
-                client.on("message", message2 => {
+                client.on("message", async message2 => {
                     if (message2.channel.id === config.penduid) {
                         if (pendu_full !== undefined) {
                             if (message2.author.id !== client.user.id) {
+                                if (message2.content === '!give') {
+                                    message2.delete()
+                                    if (message.member.hasPermission('ADMINISTRATOR')) {
+
+                                        var fetched = await pendu_réponse.fetchMessages().then(messages => {
+                                            const toDelete = messages.filter(msg => msg.content.includes("`Réponse du Pendu`"));
+                                            message.channel.bulkDelete(toDelete)
+                                                .catch(error => message.reply(`Impossible de supprimer des messages à cause de: ${error}`));
+                                        });
+
+                                        var pendu_givemsg = new Discord.RichEmbed()
+                                            .setTitle("Réponse du Pendu")
+                                            .setThumbnail('https://as2.ftcdn.net/jpg/00/62/44/01/1000_F_62440171_Yacq4faw4i3dchZCZSvWgLbJXxvTR8Np.jpg')
+                                            .setDescription(pendu_full)
+                                            .setColor('#940cf5')
+                                            .setFooter('Cette réponse a été demandée par: ' + message2.author.username)
+                                            .setTimestamp();
+
+                                        return pendu_réponse.send({embed: pendu_givemsg});
+                                    } else {
+                                        return message.reply("Désolé, vous n'avez pas les permissions d'utiliser ceci!");
+                                    }
+                                }
 
                                 if (message2.content.toLowerCase().length < 2) {
                                     var letter = message2.content.toLowerCase()
@@ -97,8 +120,8 @@ module.exports.run = async (client, message, args, user) => {
                                             embed: pendu_lostmsg
                                         }).then(embedMessage => {
                                             const emoji = client.emojis.get("613852586629660672");
-                                            embedMessage.react(emoji);
-                                            return embedMessage.react('🔁');
+                                            return embedMessage.react(emoji);
+                                            // return embedMessage.react('🔁');
                                         });
                                     }
 
@@ -116,8 +139,8 @@ module.exports.run = async (client, message, args, user) => {
                                             embed: pendu_winmsg
                                         }).then(async embedMessage => {
                                             const emoji1 = client.emojis.get("613671749967413249");
-                                            embedMessage.react(emoji1);
-                                            embedMessage.react('🔁');
+                                            return embedMessage.react(emoji1);
+                                            //embedMessage.react('🔁');
                                         });
                                     }
 

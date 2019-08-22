@@ -24,8 +24,6 @@ module.exports.run = async (client, message, args) => {
 
         var justeprix_réponse = client.channels.get(config.réponse_jeux)
 
-        justeprix_réponse.send("Réponse du justeprix\n" + justeprix_random)
-
         var justeprix_msg = new Discord.RichEmbed()
             .setTitle('Une partie de juste prix a été lancée')
             .setThumbnail('https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/Logo_Le_Juste_Prix.png/250px-Logo_Le_Juste_Prix.png')
@@ -35,9 +33,31 @@ module.exports.run = async (client, message, args) => {
 
         justeprix_channel.send(justeprix_msg)
             .then(
-                client.on("message", message2 => {
+                client.on("message", async message2 => {
                     if (message2.channel.id === config.justeprix_id) {
                         if (message2.author.id !== client.user.id) {
+                            if (message2.content === '!give') {
+                                message2.delete()
+                                if (message.member.hasPermission('ADMINISTRATOR')) {
+
+                                    var fetched = await justeprix_réponse.fetchMessages().then(messages => {
+                                        const toDelete = messages.filter(msg => msg.content.includes("`Dernière réponse du Juste-Prix`"));
+                                        message.channel.bulkDelete(toDelete)
+                                            .catch(error => message.reply(`Impossible de supprimer des messages à cause de: ${error}`));
+                                    });
+                                    var justeprix_givemsg = new Discord.RichEmbed()
+                                        .setTitle("Réponse du Juste-Prix")
+                                        .setThumbnail('https://www.dragnsurvey.com/blog/wp-content/uploads/2017/01/question-r%C3%A9ponse-quizz-300x154.jpg')
+                                        .setDescription(justeprix_random)
+                                        .setColor('#3ab6c7')
+                                        .setFooter('Cette réponse a été demandée par: ' + message2.author.username)
+                                        .setTimestamp();
+
+                                    return justeprix_réponse.send({embed: justeprix_givemsg});
+                                } else {
+                                    return message.reply("Désolé, vous n'avez pas les permissions d'utiliser ceci!");
+                                }
+                            }
                             justeprix_number = parseInt(message2, 10);
                             if (justeprix_number >= config.justeprix_min && justeprix_number <= config.justeprix_max) {
                                 if (justeprix_number < justeprix_random) message2.reply(justeprix_number + ' **C\'est plus**!');
