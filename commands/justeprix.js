@@ -34,10 +34,10 @@ module.exports.run = async (client, message, args) => {
             .setFooter('Partie lancée par ' + message.author.username);
 
         justeprix_channel.send(justeprix_msg)
-            .then (
+            .then(
                 client.on("message", message2 => {
-                    if (message2.channel.id === config.justeprix_id){
-                        if (message2.author.id !== client.user.id){
+                    if (message2.channel.id === config.justeprix_id) {
+                        if (message2.author.id !== client.user.id) {
                             justeprix_number = parseInt(message2, 10);
                             if (justeprix_number >= config.justeprix_min && justeprix_number <= config.justeprix_max) {
                                 if (justeprix_number < justeprix_random) message2.reply(justeprix_number + ' **C\'est plus**!');
@@ -51,11 +51,13 @@ module.exports.run = async (client, message, args) => {
                                         .setDescription('\n**Félicitation ' + message2.author + ', Tu as trouvé le nombre caché!**\n\nVous pouvez relancer une nouvelle partie en tappant la commande \`!e justeprix\`')
                                         .setColor('#33ff3f');
 
-                                        justeprix_channel.send({embed: justeprix_winmsg}).then(embedMessage => {
-                                            const emoji = client.emojis.get("613671749967413249");
-                                            Level.add(message2, Math.floor(Math.random() * 20 + 10))
-                                            return embedMessage.react(emoji);
-                                        });
+                                    justeprix_channel.send({
+                                        embed: justeprix_winmsg
+                                    }).then(embedMessage => {
+                                        const emoji = client.emojis.get("613671749967413249");
+                                        Level.add(message2, Math.floor(Math.random() * 20 + 10))
+                                        return embedMessage.react(emoji);
+                                    });
                                 };
                             };
                         };
@@ -65,8 +67,8 @@ module.exports.run = async (client, message, args) => {
     };
 }
 Level = {
-    test: function leveltest(message){
-        if (!xp[message.author.id]){
+    test: function leveltest(message) {
+        if (!xp[message.author.id]) {
             xp[message.author.id] = {
                 xp: 80,
                 level: 1
@@ -86,8 +88,8 @@ Level = {
             return message.channel.send(levelup_msg);
         };
 
-        fs.writeFile("./xp.json", JSON.stringify(xp), (err) =>{
-            if(err) console.log(err);
+        fs.writeFile("./xp.json", JSON.stringify(xp), (err) => {
+            if (err) console.log(err);
         });
     },
     add: function xpadd(message, number) {

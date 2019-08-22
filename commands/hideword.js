@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
 
     var hideword_réponse = client.channels.get(config.réponse_jeux)
 
-    hideword_réponse.send("Réponse hideword\n" + "`"+hideword_full+"`")
+    hideword_réponse.send("Réponse hideword\n" + "`" + hideword_full + "`")
 
     var hideword_cut = hideword_full.split("");
     // var hideword_join = []
@@ -20,7 +20,7 @@ module.exports.run = async (client, message, args) => {
     var hideletters = Math.round(hideletters);
 
     for (var i = 1; i <= hideletters;) {
-        var number = Math.floor(Math.random()*hideword_cut.length);
+        var number = Math.floor(Math.random() * hideword_cut.length);
         if (hideword_cut[number] !== '﹏') {
             // console.log(hideword_cut.length + ' ' + i + ' ' + number + ' ' + hideword_cut[number]);
             hideword_cut[number] = '﹏';
@@ -46,15 +46,15 @@ module.exports.run = async (client, message, args) => {
 
     console.log(hideword_joinlast);
     hideword_channel.send(hideword_msg)
-        .then (
+        .then(
             client.on("message", message2 => {
-                if (message2.channel.id === config.hideword_id){
-                    if (hideword_full !== undefined){
-                        if (message2.author.id !== client.user.id){
-                            if (message2.content.toLowerCase() === '!indice'||message2.content.toLowerCase() === '!i') {
+                if (message2.channel.id === config.hideword_id) {
+                    if (hideword_full !== undefined) {
+                        if (message2.author.id !== client.user.id) {
+                            if (message2.content.toLowerCase() === '!indice' || message2.content.toLowerCase() === '!i') {
                                 var allLetters = hideword_full.split("");
                                 var once = true;
-                                hideword_cut.forEach(function(item, index){
+                                hideword_cut.forEach(function(item, index) {
                                     if (once) {
                                         if (item === '﹏') {
                                             hideword_cut[index] = allLetters[index];
@@ -77,7 +77,7 @@ module.exports.run = async (client, message, args) => {
                                 message2.reply('**Le mot caché n\'est pas  \`' + message2.content + '\`**');
                             } else {
                                 var points = 0
-                                hideword_cut.forEach(function(item, index){
+                                hideword_cut.forEach(function(item, index) {
                                     if (item === '﹏') {
                                         points = points + 10
                                     }
@@ -91,7 +91,9 @@ module.exports.run = async (client, message, args) => {
                                     .setDescription(`\n**Félicitation ${message2.author} Tu as trouvé le mot caché!**\n\nVous ne connaissez pas ce mot ? [Chercher la définition](https://www.linternaute.fr/dictionnaire/fr/definition/${message2.content})\n\nVous pouvez relancer une nouvelle partie en tappant la commande \`!e hideword\``)
                                     .setColor('#33ff3f');
 
-                                message.channel.send({embed: hideword_winmsg}).then(embedMessage => {
+                                message.channel.send({
+                                    embed: hideword_winmsg
+                                }).then(embedMessage => {
                                     const emoji = client.emojis.get("613671749967413249");
                                     return embedMessage.react(emoji);
                                 });

@@ -36,7 +36,6 @@ abeille
 aber
 aberrant
 aberration
-abętir
 abhorrer
 abîme
 abîmer
@@ -698,7 +697,6 @@ alcoolisme
 alcoolo
 aléas
 aléatoire
-alęne
 alentour
 alentours
 alerte
@@ -1288,9 +1286,6 @@ apprenti
 apprentie
 apprentis
 apprentissage
-appręt
-appręté
-appręter
 appris
 apprivoisement
 apprivoiser
@@ -1361,8 +1356,6 @@ archéologique
 archéologue
 archéologues
 archet
-archevęché
-archevęque
 archidiacre
 archimandrite
 archipel
@@ -1380,7 +1373,6 @@ ardemment
 ardent
 ardeur
 ardu
-aręte
 argent
 argentan
 argenterie
@@ -1439,15 +1431,6 @@ arrangement
 arranger
 arrestation
 arrestations
-arręt
-arręte
-arręté
-arrętée
-arrętées
-arręter
-arrętés
-arrętoir
-arręts
 arrhes
 arriéré
 arriérés
@@ -2127,7 +2110,6 @@ banquette
 banquier
 banquiers
 baobab
-baptęme
 baptisé
 baptisée
 baptiser
@@ -2252,9 +2234,7 @@ beauté
 beaux
 bébé
 bébés
-bébęte
 bécane
-bęcher
 bécot
 bécoter
 becqueter
@@ -2263,7 +2243,6 @@ béer
 bégayer
 beige
 beigne
-bęler
 belge
 belges
 bélier
@@ -2315,11 +2294,7 @@ besoins
 best
 bestiaux
 bestiole
-bęta
 bétail
-bęte
-bętes
-bętise
 béton
 bette
 betterave
@@ -2344,7 +2319,6 @@ bidonvilles
 biélorusse
 bien
 bien-aimé
-bien-ętre
 bienfait
 bienheureux
 biens
@@ -2430,8 +2404,6 @@ blason
 blasphémer
 blatte
 bled
-blęme
-blęmir
 blessant
 blesse
 blessé
@@ -4348,7 +4320,6 @@ connus
 connut
 conquérant
 conquérir
-conquęte
 conquis
 cons
 consacrait
@@ -4990,7 +4961,6 @@ crémation
 crémerie
 créneau
 créole
-crępe
 crépi
 crépir
 crépiter
@@ -4998,7 +4968,6 @@ crépu
 crépus)
 crépuscule
 cresson
-cręte
 crétin
 creuse
 creusé
@@ -5618,7 +5587,6 @@ démarre
 démarré
 démarrer
 démasquer
-démęlés
 déménagement
 déménager
 démence
@@ -5742,10 +5710,6 @@ dépassent
 dépasser
 dépassera
 dépassés
-dépęche
-dépęché
-dépęcher
-dépęchés
 dépeindre
 dépeint
 dépénalisation
@@ -5928,7 +5892,6 @@ désillusionner
 désintégrer
 désintéressé
 désintéresser
-désintéręt
 désinvolte
 désinvolture
 désir
@@ -6107,7 +6070,6 @@ dévergondé
 dévergonder
 déversement
 déverser
-dévętir
 devez
 déviation
 dévider
@@ -7029,9 +6991,6 @@ embaumer
 embellie
 embellissement
 emberlificoter
-embętant
-embętement
-embęter
 emblavage
 emblave
 emblaver
@@ -7103,12 +7062,6 @@ empan
 empaquetage
 empaqueter
 empara
-empęchant
-empęche
-empęché
-empęchement
-empęchent
-empęcher
 empereur
 empierrement
 empiler
@@ -7283,11 +7236,6 @@ ennuyeux
 énorme
 énormément
 énormes
-enquęte
-enquęter
-enquętes
-enquęteur
-enquęteurs
 enquiquineuse
 enrayer
 enregistrant
@@ -7344,9 +7292,6 @@ entériner
 enterré
 enterrement
 enterrer
-en-tęte
-entęté
-entętement
 enthousiasme
 enthousiasmé
 enthousiaste
@@ -7723,7 +7668,6 @@ estropier
 éternité
 éternuement
 éternuer
-ętes
 étés
 éthique
 éthiques
@@ -7754,7 +7698,6 @@ ethnographique
 étrangers
 étranges
 étrangler
-ętre
 étreindre
 étrenne
 étrier
@@ -7782,7 +7725,6 @@ ethnographique
 étui
 eucharistie
 euphorie
-euręka
 eurent
 euromarché
 européen
@@ -7816,7 +7758,6 @@ eux
 évaporer
 évasé
 évasion
-évęché
 éveillé
 éveiller
 événement
@@ -7829,8 +7770,6 @@ eux
 éventuellement
 éventuelles
 éventuels
-évęque
-évęques
 évidemment
 évidence
 évident
@@ -8107,9 +8046,6 @@ extrait
 extraits
 extraordinaire
 extraordinaires
-extręme
-extręmement
-extręmes
 extremis
 extrémiste
 extrémistes
@@ -8318,8 +8254,6 @@ feindre
 feint
 feinte
 feinter
-fęlé
-fęler
 félicitation
 félicitations
 félicite
@@ -8383,10 +8317,6 @@ festival
 festivals
 festivités
 festoyer
-fęte
-fęté
-fęter
-fętes
 feu!
 feuillage
 feuille
@@ -8661,8 +8591,6 @@ forcir
 forer
 forestier
 forestiers
-foręt
-foręts
 forfait
 forfaitaire
 forge
@@ -9092,15 +9020,11 @@ géminer
 gémir
 gémissement
 gémissements
-gęnant
 gendarme
 gendarmerie
 gendarmes
 gendre
-gęne
-gęné
 généalogie
-gęner
 général
 générale
 généralement
@@ -9120,11 +9044,8 @@ généreusement
 généreux
 générique
 générosité
-gęnés
 génétique
 génétiques
-gęneur
-gęneuse
 genévrier
 génial
 génie
@@ -9389,7 +9310,6 @@ green
 greffe
 greffer
 greffes
-gręle
 grelotter
 grenade
 grenades
@@ -9458,7 +9378,6 @@ grue
 guelte
 guenille
 guenon
-guępe
 guérilla
 guérilleros
 guérir
@@ -9705,10 +9624,6 @@ homonyme
 hongrois
 hongroise
 hongroises
-honnęte
-honnętement
-honnętes
-honnęteté
 honneur
 honneurs
 honnir
@@ -10675,8 +10590,6 @@ intéressement
 intéressent
 intéresser
 intéressés
-intéręt
-intéręts
 intergouvernementale
 intergroupe
 intérieur
@@ -11643,7 +11556,6 @@ luciole
 luette
 lueur
 lugubre
-lui-męme
 luire
 luis
 luisant
@@ -11819,7 +11731,6 @@ malheureuse
 malheureusement
 malheureux
 malheurs
-malhonnęte
 mali
 malice
 malicieux
@@ -12007,7 +11918,6 @@ martin
 martine
 martinez
 martini
-martin-pęcheur
 martyr
 martyre
 martyriser
@@ -12160,13 +12070,6 @@ mélancolique
 mélancoliquement
 mélange
 mélanger
-męlant
-męle
-męlé
-męlée
-męlent
-męler
-męlés
 mélodie
 mélodies
 mélodieux
@@ -12175,10 +12078,8 @@ melon
 membrane
 membre
 membres
-męme
 mémé
 mémento
-męmes
 mémoire
 mémoires
 mémorable
@@ -12524,7 +12425,6 @@ modifiés
 modo
 module
 moelleux
-moi-męme
 moindre
 moindres
 moine
@@ -13930,14 +13830,10 @@ peau
 peaufiner
 peau-rouge
 pébroc
-pęche
 péché
 pécher
-pęcher
 pécheresse
 pécheur
-pęcheur
-pęcheurs
 pécuniaire
 pédagogie
 pédagogique
@@ -13990,7 +13886,6 @@ pendant
 pendre
 pendu
 pendule
-pęne
 pénétrant
 pénétration
 pénétré
@@ -14496,7 +14391,6 @@ pochard
 poche
 poches
 pochoir
-poęle
 poésie
 poétique
 poétiquement
@@ -14813,9 +14707,6 @@ précédentes
 précédents
 précéder
 précepte
-pręche
-pręcher
-pręchi-pręcha
 précieuse
 précieuses
 précieux
@@ -15012,9 +14903,6 @@ présumé
 présumer
 présumés
 présupposer
-pręt
-pręte
-pręté
 prétend
 prétendait
 prétendant
@@ -15024,15 +14912,10 @@ prétendre
 prétendu
 prétendue
 prétendument
-prętent
 prétentieux
 prétention
 prétentions
-pręter
-prętes
-pręteurs
 prétexte
-pręts
 preuve
 preuves
 preux
@@ -15367,7 +15250,6 @@ proteste
 protesté
 protestent
 protester
-protęt
 protocolaire
 protocole
 protocoles
@@ -15574,8 +15456,6 @@ question
 questionnaire
 questionner
 questions
-quęte
-quęter
 queue
 queue-de-morue
 queue-de-pie
@@ -15939,7 +15819,6 @@ rechange
 recharger
 réchaud
 réchauffer
-ręche
 recherche
 recherché
 recherchent
@@ -16009,7 +15888,6 @@ reconnue
 reconnues
 reconnus
 reconquérir
-reconquęte
 reconstitué
 reconstituer
 reconstitution
@@ -16417,12 +16295,10 @@ rendu
 rendue
 rendues
 rendus
-ręne
 rené
 renégat
 renégate
 renégociation
-ręnes
 renfermé
 renfermer
 renfoncement
@@ -16626,8 +16502,6 @@ réputés
 requalification
 requérant
 requérante
-requęte
-requętes
 requiert
 requin
 requis
@@ -16869,16 +16743,10 @@ réussissent
 réussit
 réussite
 réussites
-ręvait
 revalorisation
 revaloriser
 revanchard
 revanche
-ręvasser
-ręvasserie
-ręve
-ręvé
-revęche
 réveil
 réveille
 réveillé
@@ -16908,23 +16776,15 @@ revendiquent
 revendiquer
 revendre
 revenir
-ręvent
 revente
 revenu
 revenue
 revenus
-ręver
 réverbération
 réverbérer
 révéré
 révérer
-ręverie
 revers
-ręves
-revęt
-revętement
-revętir
-ręveur
 reviendra
 reviendrait
 revienne
@@ -17820,7 +17680,6 @@ soif
 soigné
 soigner
 soigneusement
-soi-męme
 soin
 soins
 soir
@@ -18052,7 +17911,6 @@ sous-sol
 soustraire
 sous-traitance
 sous-traitant
-sous-vętement
 soute
 soutenant
 souteneur
@@ -18432,7 +18290,6 @@ supprimés
 suppuration
 suppurer
 suprématie
-supręme
 sűr
 suranné
 surannés
@@ -18496,7 +18353,6 @@ surveiller
 survenu
 survenue
 survenus
-survętement
 survie
 survient
 survît
@@ -18760,7 +18616,6 @@ température
 tempéré
 tempérer
 tempes
-tempęte
 temple
 temples
 tempo
@@ -18864,9 +18719,6 @@ test
 testament
 tester
 tests
-tęte
-tętes
-tętu
 texte
 textes
 textile
@@ -18968,7 +18820,6 @@ toile
 toiles
 toilette
 toilettes
-toi-męme
 toison
 toit
 toits
@@ -19297,7 +19148,6 @@ trésors
 tressaillir
 tresser
 tréteau
-tręve
 triangle
 tribu
 tribunal
@@ -19367,7 +19217,6 @@ trou
 troublante
 trouble
 troublé
-trouble-fęte
 troubler
 troubles
 trouillard
@@ -19788,18 +19637,13 @@ vestibule
 vestige
 vestiges
 veston
-vętement
-vętements
 vétéran
 vétérans
 vétérinaire
 vétille
 vétiller
 vétilleux
-vętir
 veto
-vętu
-vętus
 veuf
 veuille
 veule
@@ -20140,7 +19984,6 @@ yvette
 yvon
 zébré
 zélandais
-zčle
 zélé
 zénith
 zéro

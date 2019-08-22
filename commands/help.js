@@ -13,7 +13,9 @@ module.exports.run = async (client, message, args) => {
         .setFooter('Ce message sera supprimé au bout de 30 secondes.');
 
     message.delete(5000)
-    message.channel.send(helpEmbed).then(msg => {msg.delete(30000)})
+    message.channel.send(helpEmbed).then(msg => {
+        msg.delete(30000)
+    })
 }
 
 module.exports.help = {

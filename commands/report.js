@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
     }
     const reportchan = client.channels.get(config.reportchanid);
     var reportMsg = new Discord.RichEmbed()
-        .setColor('#' + Math.floor(Math.random()*16777215).toString(16))
+        .setColor('#' + Math.floor(Math.random() * 16777215).toString(16))
         .setDescription(`**Nouveau report par ${message.author}**\n\n${args.join(" ")}`)
         .setTimestamp()
         .setThumbnail('https://cdn-features.semrush.com/my-reports-illustration.png');

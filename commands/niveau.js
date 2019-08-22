@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 let xp = require("../xp.json")
 
 module.exports.run = async (client, message, args) => {
-    if(args[0]) {
+    if (args[0]) {
         var user = getUserFromMention(args[0]);
         if (!xp[user.id]) return message.reply("L'utilisateur " + user + " n'a pas encore participé aux jeux.")
     } else {
@@ -18,17 +18,17 @@ module.exports.run = async (client, message, args) => {
 
 
     function getUserFromMention(mention) {
-    	if (!mention) return;
+        if (!mention) return;
 
-    	if (mention.startsWith('<@') && mention.endsWith('>')) {
-    		mention = mention.slice(2, -1);
+        if (mention.startsWith('<@') && mention.endsWith('>')) {
+            mention = mention.slice(2, -1);
 
-    		if (mention.startsWith('!')) {
-    			mention = mention.slice(1);
-    		}
+            if (mention.startsWith('!')) {
+                mention = mention.slice(1);
+            }
 
-    		return client.users.get(mention);
-    	}
+            return client.users.get(mention);
+        }
     }
 }
 

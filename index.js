@@ -6,17 +6,22 @@ const token = require("./token.json");
 const fs = require('fs');
 let prefix = config.prefix;
 client.commands = new Discord.Collection();
-const Aliases = {'!j' : 'joke', '!jp' : 'justeprix', '!hw' : 'hideword', '!p' : 'pendu'};
+const Aliases = {
+    '!j': 'joke',
+    '!jp': 'justeprix',
+    '!hw': 'hideword',
+    '!p': 'pendu'
+};
 
 fs.readdir("./commands", (err, files) => {
     if (err) console.log(err);
 
     let jsfile = files.filter(f => f.split(".").pop() === "js")
-    if(jsfile.length <= 0) {
+    if (jsfile.length <= 0) {
         return console.log("Je ne trouve aucune commande !");
     }
 
-    jsfile.forEach((f, i) =>{
+    jsfile.forEach((f, i) => {
         let props = require(`./commands/${f}`);
         console.log(`${f} lancé!`)
         client.commands.set(props.help.name, props);
@@ -70,6 +75,15 @@ client.on("message", async message => {
 
         if (cmd === "jpt") Level.test(message);
 
+    };
+});
+
+client.on('messageReactionAdd', (reaction, user) => {
+    if (user.bot) return;
+	if (reaction.emoji.name === '🔁') {
+        if (message.channel.id === config.penduid) {
+            message.reply("restart game.")
+        }
     };
 });
 

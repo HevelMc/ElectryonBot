@@ -30,11 +30,11 @@ module.exports.run = async (client, message, args) => {
         .setTimestamp()
         .setFooter('ID user: ' + message.author.id + ' - ID msg: ' + message.id)
 
-        if (args !== 0) {
-            logmsg.setDescription(`**${message.author} a utilisé la commande Say pour envoyer \`` + sayMessage + `\` dans le salon ${message.channel}**`)
-        } else {
-            logmsg.setDescription(`**${message.author} a utilisé la commande Say pour envoyer une image dans le salon ${message.channel}**`)
-        }
+    if (args !== 0) {
+        logmsg.setDescription(`**${message.author} a utilisé la commande Say pour envoyer \`` + sayMessage + `\` dans le salon ${message.channel}**`)
+    } else {
+        logmsg.setDescription(`**${message.author} a utilisé la commande Say pour envoyer une image dans le salon ${message.channel}**`)
+    }
 
     logchan.send(logmsg);
 }

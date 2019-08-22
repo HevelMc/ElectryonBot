@@ -8,10 +8,10 @@ module.exports.run = async (client, message, args) => {
     const jokechan = client.channels.get(config.jokechanid);
 
     var jokeMsg = new Discord.RichEmbed()
-        .setColor('#' + Math.floor(Math.random()*16777215).toString(16))
+        .setColor('#' + Math.floor(Math.random() * 16777215).toString(16))
         .setTitle('');
 
-    var jokeImg = smileyArray[Math.floor(Math.random()*smileyArray.length)];
+    var jokeImg = smileyArray[Math.floor(Math.random() * smileyArray.length)];
     jokeMsg.setThumbnail(jokeImg);
 
     if (args > 0 && args <= jokeArray.length) {
@@ -19,7 +19,7 @@ module.exports.run = async (client, message, args) => {
         jokeMsg.setTitle(message.author.username + ' à réclamé la blague n°' + args);
         jokeMsg.setFooter('Blague n°' + args);
     } else {
-        var jokeR = Math.floor(Math.random()*jokeArray.length);
+        var jokeR = Math.floor(Math.random() * jokeArray.length);
         var Joke = jokeArray[jokeR];
         jokeMsg.setTitle(message.author.username + ' à réclamé une blague, en voici une:');
         jokeMsg.setFooter('Blague n°' + jokeR);
@@ -27,7 +27,7 @@ module.exports.run = async (client, message, args) => {
     jokeMsg.setDescription('**' + Joke + '**');
 
     jokechan.send(jokeMsg)
-        .then (async jokeMsg => {
+        .then(async jokeMsg => {
             jokeMsg.react("👍");
             await sleep(100)
             jokeMsg.react("👎");
@@ -36,7 +36,7 @@ module.exports.run = async (client, message, args) => {
                 if (reaction.emoji.name === "👎" || reaction.emoji.name === "👍") {
                     if (user.id !== client.user.id) {
                         var AllReact = reaction.message.reactions;
-                        AllReact.forEach(function (ireaction){
+                        AllReact.forEach(function(ireaction) {
                             if (ireaction != reaction) ireaction.remove(user);
                         });
 
@@ -80,14 +80,14 @@ module.exports.help = {
     name: "joke"
 }
 
-function round2(nb){
+function round2(nb) {
     nb = nb * 100
     nb = Math.round(nb) / 100
-    return(nb)
+    return (nb)
 }
 
-function sleep(ms){
-    return new Promise(resolve=>{
-        setTimeout(resolve,ms)
+function sleep(ms) {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms)
     })
 }
