@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
-let xp = require("../xp.json")
+let xp = require("../data/xp.json")
 
 
 module.exports.run = async (client, message, args) => {
@@ -108,7 +108,7 @@ Level = {
             return message.channel.send(levelup_msg);
         };
 
-        fs.writeFile("./xp.json", JSON.stringify(xp), (err) => {
+        fs.writeFile("./data/xp.json", JSON.stringify(xp), (err) => {
             if (err) console.log(err);
         });
     },

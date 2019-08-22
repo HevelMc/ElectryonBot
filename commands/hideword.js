@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 let wordArray = fs.readFileSync('liste_francais.txt').toString().split("\r\n");
 const config = require("../config.json");
-let xp = require("../xp.json")
+let xp = require("../data/xp.json")
 
 module.exports.run = async (client, message, args) => {
     var hideword_full = wordArray[Math.floor(Math.random() * wordArray.length)];

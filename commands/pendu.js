@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const config = require("../config.json");
 let wordArray = fs.readFileSync('liste_francais.txt').toString().split("\r\n");
-let xp = require("../xp.json")
+let xp = require("../data/xp.json")
 
 module.exports.run = async (client, message, args, user) => {
 

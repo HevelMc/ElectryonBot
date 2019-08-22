@@ -2,9 +2,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require("./config.json");
-const token = require("./token.json");
+const token = require("./data/token.json");
 const fs = require('fs');
-let afk = require("./afk.json")
+let afk = require("./data/afk.json")
 let prefix = config.prefix;
 client.commands = new Discord.Collection();
 const Aliases = {
