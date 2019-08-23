@@ -61,6 +61,7 @@ client.on("message", async message => {
             }
         });
     }
+
     // if (message.content.includes(afk))
     // afk.forEach(function (item, index) {
     //     // message.channel.reply("<@" + index + ">")
@@ -104,8 +105,10 @@ client.on("message", async message => {
         //justeprixstop
         if (cmd === "justeprixstop") var justeprix_encours = undefined;
 
-        if (cmd === "jpt") Level.test(message);
-
+        //command secrete
+        if (cmd === "jpp") {
+            message.channel.send("C'est bien sur **JEAN PIERRE PERNAUT** :tada: \n https://www.youtube.com/watch?v=pOGqt7Cmuf0");
+        };
     };
 });
 
