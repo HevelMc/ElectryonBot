@@ -12,10 +12,15 @@ module.exports.run = async (client, message, args) => {
         .setDescription(`**Nouveau report par ${message.author}**\n\n${args.join(" ")}`)
         .setTimestamp()
         .setThumbnail('https://cdn-features.semrush.com/my-reports-illustration.png');
-    reportchan.send("Ce message est à destination du <@&444899335793278997>", reportMsg);
+    if (args[0] !== "test") {
+        reportchan.send("Ce message est à destination du <@&444899335793278997>", reportMsg);
+    } else {
+        reportchan.send("Ce message est un test!", reportMsg);
+    }
     message.delete()
     message.channel.send('Merci pour votre rapport, il a correctement été envoyé. Le Staff va pouvoir le prendre en compte d\'ici peu.')
 }
+
 module.exports.help = {
     name: "report"
 }

@@ -12,6 +12,7 @@ const Aliases = {
     '!j': 'joke',
     '!jp': 'justeprix',
     '!hw': 'hideword',
+    '!mc': 'hideword',
     '!p': 'pendu',
     '!h': 'help'
 };
