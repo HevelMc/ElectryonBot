@@ -3,9 +3,10 @@ const fs = require("fs");
 let jokeArray = fs.readFileSync('jokes.json').toString().split("\n**");
 let smileyArray = fs.readFileSync('urlemojis.txt').toString().split("\n");
 const config = require("../config.json");
+const channels = require("../data/channels.json");
 
 module.exports.run = async (client, message, args) => {
-    const jokechan = client.channels.get(config.jokechanid);
+    const jokechan = client.channels.get(channels[message.guild.id].blagues);
 
     var jokeMsg = new Discord.RichEmbed()
         .setColor('#' + Math.floor(Math.random() * 16777215).toString(16))

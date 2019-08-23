@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 let wordArray = fs.readFileSync('liste_francais.txt').toString().split("\r\n");
 const config = require("../config.json");
+const channels = require("../data/channels.json")
 let xp = require("../data/xp.json")
 
 module.exports.run = async (client, message, args) => {
@@ -9,7 +10,7 @@ module.exports.run = async (client, message, args) => {
 
     console.log(hideword_full);
 
-    var hideword_réponse = client.channels.get(config.réponse_jeux)
+    var hideword_réponse = client.channels.get(channels[message.guild.id].réponses)
 
     var hideword_cut = hideword_full.split("");
     // var hideword_join = []
@@ -36,7 +37,7 @@ module.exports.run = async (client, message, args) => {
         .setColor('#ff8870')
         .setFooter(`Partie lancée par ${message.author.username} --- Utilisez !indice en cas de nécessité`);
 
-    const hideword_channel = client.channels.get(config.hideword_id);
+    const hideword_channel = client.channels.get(channels[message.guild.id].motscachés);
 
     var fetched = await hideword_channel.fetchMessages({});
     hideword_channel.bulkDelete(fetched)
@@ -46,7 +47,7 @@ module.exports.run = async (client, message, args) => {
     hideword_channel.send(hideword_msg)
         .then(
             client.on("message", async message2 => {
-                if (message2.channel.id === config.hideword_id) {
+                if (message2.channel.id === channels[message.guild.id].motscachés) {
                     if (hideword_full !== undefined) {
                         if (message2.author.id !== client.user.id) {
                             if (message2.content === '!give') {

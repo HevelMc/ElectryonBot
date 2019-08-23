@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require("./config.json");
 const token = require("./data/token.json");
+const channels = require("./data/channels.json");
 const fs = require('fs');
 let afk = require("./data/afk.json")
 let prefix = config.prefix;
@@ -110,7 +111,7 @@ client.on("message", async message => {
 client.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
 	if (reaction.emoji.name === '🔁') {
-        if (message.channel.id === config.penduid) {
+        if (message.channel.id === channels[message.guild.id].pendu) {
             message.reply("Restarting game.")
         }
     };

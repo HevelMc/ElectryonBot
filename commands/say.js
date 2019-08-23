@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const config = require("../config.json");
+const channels = require("../data/channels.json");
 
 module.exports.run = async (client, message, args) => {
     if (!message.member.hasPermission('MANAGE_CHANNELS'))
@@ -20,8 +21,8 @@ module.exports.run = async (client, message, args) => {
         })
     })
 
-    //log
-    const logchan = client.channels.get(config.logchanid);
+    //logs
+    const logchan = client.channels.get(channels[message.guild.id].logs);
 
     const logmsg = new Discord.RichEmbed()
         .setColor('#fff5c9')

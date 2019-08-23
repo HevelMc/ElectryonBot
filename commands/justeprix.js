@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const config = require("../config.json");
+const channels = require("../data/channels.json");
 const fs = require("fs");
 let xp = require("../data/xp.json")
 
@@ -9,7 +10,7 @@ module.exports.run = async (client, message, args) => {
         return message.reply('Désolé, une partie est déjà en cours !');
     } else {
 
-        var justeprix_channel = client.channels.get(config.justeprix_id);
+        var justeprix_channel = client.channels.get(channels[message.guild.id].justeprix);
 
         var fetched = await justeprix_channel.fetchMessages({});
         justeprix_channel.bulkDelete(fetched)
@@ -22,7 +23,7 @@ module.exports.run = async (client, message, args) => {
 
         console.log(justeprix_random);
 
-        var justeprix_réponse = client.channels.get(config.réponse_jeux)
+        var justeprix_réponse = client.channels.get(channels[message.guild.id].réponses)
 
         var justeprix_msg = new Discord.RichEmbed()
             .setTitle('Une partie de juste prix a été lancée')
@@ -34,7 +35,7 @@ module.exports.run = async (client, message, args) => {
         justeprix_channel.send(justeprix_msg)
             .then(
                 client.on("message", async message2 => {
-                    if (message2.channel.id === config.justeprix_id) {
+                    if (message2.channel.id === channels[message.guild.id].justeprix) {
                         if (message2.author.id !== client.user.id) {
                             if (message2.content === '!give') {
                                 message2.delete()

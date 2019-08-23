@@ -1,12 +1,5 @@
 {
   "prefix" : "!e ",
-  "logchanid" : "525318039877582848",
-  "reportchanid" : "444189916662857748",
-  "jokechanid" : "610936704911802379",
-  "justeprix_id" : "611687328863485971",
-  "hideword_id" : "612989981794893844",
   "justeprix_min" : "10000",
-  "justeprix_max" : "40000",
-  "réponse_jeux" : "613750845095542805",
-  "penduid" : "613827452724314122"
+  "justeprix_max" : "40000"
 }

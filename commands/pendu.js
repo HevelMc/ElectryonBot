@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const config = require("../config.json");
+const channels = require("../data/channels.json");
 let wordArray = fs.readFileSync('liste_francais.txt').toString().split("\r\n");
 let xp = require("../data/xp.json")
 
@@ -10,9 +11,9 @@ module.exports.run = async (client, message, args, user) => {
         user = message.author
     }
 
-    if (message.channel.id === config.penduid) {
+    if (message.channel.id === channels[message.guild.id].pendu) {
 
-        var pendu_channel = client.channels.get(config.penduid)
+        var pendu_channel = client.channels.get(channels[message.guild.id].pendu)
         var pendu_full = wordArray[Math.floor(Math.random() * wordArray.length)];
 
         var pendu_cut = pendu_full.split("");
@@ -35,7 +36,7 @@ module.exports.run = async (client, message, args, user) => {
 
         console.log(pendu_full);
 
-        var pendu_réponse = client.channels.get(config.réponse_jeux)
+        var pendu_réponse = client.channels.get(channels[message.guild.id].réponses)
 
         var pendu_msg = new Discord.RichEmbed()
             .setTitle('Une partie de Pendu a été lancée')
@@ -49,7 +50,7 @@ module.exports.run = async (client, message, args, user) => {
             })
             .then(embedMessage => {
                 client.on("message", async message2 => {
-                    if (message2.channel.id === config.penduid) {
+                    if (message2.channel.id === channels[message.guild.id].pendu) {
                         if (pendu_full !== undefined) {
                             if (message2.author.id !== client.user.id) {
                                 if (message2.content === '!give') {
